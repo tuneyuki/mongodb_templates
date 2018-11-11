@@ -1,0 +1,23 @@
+{
+  "name": "mongodb_templates",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuneyuki/mongodb_templates.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tuneyuki/mongodb_templates/issues"
+  },
+  "homepage": "https://github.com/tuneyuki/mongodb_templates#readme",
+  "dependencies": {
+    "config": "^2.0.1",
+    "mongodb": "^3.1.9"
+  }
+}
