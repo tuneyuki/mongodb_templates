@@ -1,0 +1,11 @@
+{
+  "mLab": {
+    "authConfig": {
+      "url": "xxxxxxxxxx.mlab.com:12334/dbName",
+      "dbname": "DBNAME",
+      "collection": "COLLECTION",
+      "user": "USERNAME",
+      "pass": "PASSWORD"
+    }
+  }
+}
