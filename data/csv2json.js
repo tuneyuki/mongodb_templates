@@ -8,16 +8,12 @@ const config = require('config');
 var dbConfig = config.get('mLab.authConfig');
 
 var url = "mongodb://" + dbConfig.user + ":" + dbConfig.pass + "@" + dbConfig.url;
+var array = [];
 
 const rl = readline.createInterface({
   input: fs.createReadStream('./amimesongs.csv'),
   crlfDelay: Infinity
 });
-
-var song_json = new Array();
-
-
-console.log(song_json.length);
 
 rl.on('line', (line) => {
   // console.log(line);
@@ -25,9 +21,10 @@ rl.on('line', (line) => {
   var addData = {
     year: result[0],
     title: result[1],
-    singer: result[2]
+    singer: result[2],
+    anime: result[3]
   }
-  pushJson(song_json, addData);
+  array.push(JSON.stringify(addData));
 });
 
 pushJson = (json, addData) => {
@@ -44,13 +41,16 @@ MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
     var db = client.db(dbConfig.dbName);
     var col = db.collection(dbConfig.collection);
 
-    console.log(song_json.length);
-    col.insertMany(songs_json, (err, res) => {
-      if (err) {
-        console.log('DB insertMany Error');
-      } else {
-        console.log('DB Insert success');
-      }
+    console.log(array.length);
+    
+    array.forEach((data) => {
+      col.insertOne(JSON.parse(data), (err, result) => {
+        if(err){
+          console.log(err);
+        } else {
+          console.log('InsertOne Success!');
+        }
+      });
     });
 
     console.log('Close DB');
