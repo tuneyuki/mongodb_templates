@@ -27,10 +27,6 @@ rl.on('line', (line) => {
   array.push(JSON.stringify(addData));
 });
 
-pushJson = (json, addData) => {
-  json.push(addData);
-  return;
-}
 
 MongoClient.connect(url, {useNewUrlParser: true}, (err, client) => {
   if(err) {
